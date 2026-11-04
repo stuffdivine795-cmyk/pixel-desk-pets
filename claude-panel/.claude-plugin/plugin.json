@@ -1,0 +1,9 @@
+{
+  "name": "slime-pet",
+  "author": {
+    "name": "stuffdivine795-cmyk"
+  },
+  "version": "0.1.0",
+  "description": "A little slime beside the chat that thinks, works, cheers and panics along with Claude, and tells the desktop pet what is going on.",
+  "types": "./types/index.d.ts"
+}

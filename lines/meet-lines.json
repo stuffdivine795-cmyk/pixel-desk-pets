@@ -1,0 +1,1026 @@
+{
+ "both_idle": [
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "今天也一起散步吧"
+    },
+    {
+     "who": "codex",
+     "text": "水波正好慢慢摇"
+    },
+    {
+     "who": "claude",
+     "text": "看谁先到桌角"
+    },
+    {
+     "who": "codex",
+     "text": "水会慢慢跟着"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "今天风平浪静"
+    },
+    {
+     "who": "codex",
+     "text": "适合并排巡逻"
+    },
+    {
+     "who": "claude",
+     "text": "我来当队长"
+    },
+    {
+     "who": "codex",
+     "text": "嗯，水听你的"
+    }
+   ],
+   "action": "fist_bump"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "你发呆真可爱"
+    },
+    {
+     "who": "codex",
+     "text": "我在想水的事"
+    },
+    {
+     "who": "claude",
+     "text": "比如什么水事"
+    },
+    {
+     "who": "codex",
+     "text": "比如你像汽水"
+    }
+   ],
+   "action": "gift"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "桌面好大呀"
+    },
+    {
+     "who": "codex",
+     "text": "够我们逛很久"
+    },
+    {
+     "who": "claude",
+     "text": "那就慢慢逛"
+    },
+    {
+     "who": "codex",
+     "text": "像水绕过石头"
+    }
+   ],
+   "action": "spin"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "要不要比脚速"
+    },
+    {
+     "who": "codex",
+     "text": "我只有水滴步"
+    },
+    {
+     "who": "claude",
+     "text": "那我让你三格"
+    },
+    {
+     "who": "codex",
+     "text": "不用，我跟着你"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "今天没任务吗"
+    },
+    {
+     "who": "codex",
+     "text": "暂时只剩泡泡"
+    },
+    {
+     "who": "claude",
+     "text": "泡泡也算任务"
+    },
+    {
+     "who": "codex",
+     "text": "那我吹给你看"
+    }
+   ],
+   "action": "gift_back"
+  }
+ ],
+ "claude_busy": [
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你敲得好快"
+    },
+    {
+     "who": "claude",
+     "text": "小事，用{tool}中"
+    },
+    {
+     "who": "codex",
+     "text": "需要我递水吗"
+    },
+    {
+     "who": "claude",
+     "text": "先别打扰我"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "{tool}有点难缠"
+    },
+    {
+     "who": "codex",
+     "text": "我帮你看着"
+    },
+    {
+     "who": "claude",
+     "text": "我能搞定啦"
+    },
+    {
+     "who": "codex",
+     "text": "好，我安静等"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你尾巴在冒烟"
+    },
+    {
+     "who": "claude",
+     "text": "那是干劲火花"
+    },
+    {
+     "who": "codex",
+     "text": "要不要降温"
+    },
+    {
+     "who": "claude",
+     "text": "一点水就够"
+    }
+   ],
+   "action": "gift_back"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "进度到一半"
+    },
+    {
+     "who": "codex",
+     "text": "像水到半杯"
+    },
+    {
+     "who": "claude",
+     "text": "这比喻不错"
+    },
+    {
+     "who": "codex",
+     "text": "满杯就完成"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你眉头皱皱"
+    },
+    {
+     "who": "claude",
+     "text": "任务有点顽固"
+    },
+    {
+     "who": "codex",
+     "text": "慢慢啃就行"
+    },
+    {
+     "who": "claude",
+     "text": "看我先啃完"
+    }
+   ],
+   "action": "jump_together"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "别闲着啦"
+    },
+    {
+     "who": "codex",
+     "text": "我在攒小水滴"
+    },
+    {
+     "who": "claude",
+     "text": "攒来做什么"
+    },
+    {
+     "who": "codex",
+     "text": "给你降降温"
+    }
+   ],
+   "action": "gift_back"
+  }
+ ],
+ "codex_busy": [
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "你在忙什么呀"
+    },
+    {
+     "who": "codex",
+     "text": "用{tool}理水流"
+    },
+    {
+     "who": "claude",
+     "text": "听起来很高级"
+    },
+    {
+     "who": "codex",
+     "text": "只是慢慢流"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "水波要排好队"
+    },
+    {
+     "who": "claude",
+     "text": "我来当监工"
+    },
+    {
+     "who": "codex",
+     "text": "别捣乱就好"
+    },
+    {
+     "who": "claude",
+     "text": "我可是帮手"
+    }
+   ],
+   "action": "fist_bump"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "需要加油吗"
+    },
+    {
+     "who": "codex",
+     "text": "需要安静一点"
+    },
+    {
+     "who": "claude",
+     "text": "好，我闭嘴"
+    },
+    {
+     "who": "codex",
+     "text": "谢谢小橘"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "我闲得冒泡"
+    },
+    {
+     "who": "codex",
+     "text": "泡泡请排右边"
+    },
+    {
+     "who": "claude",
+     "text": "你太认真啦"
+    },
+    {
+     "who": "codex",
+     "text": "认真才不漏"
+    }
+   ],
+   "action": "spin"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "{tool}快好了"
+    },
+    {
+     "who": "claude",
+     "text": "那我准备庆祝"
+    },
+    {
+     "who": "codex",
+     "text": "先等最后一滴"
+    },
+    {
+     "who": "claude",
+     "text": "一滴也要等"
+    }
+   ],
+   "action": "jump_together"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "你眼睛快闭了"
+    },
+    {
+     "who": "codex",
+     "text": "水面有点困"
+    },
+    {
+     "who": "claude",
+     "text": "我替你看着"
+    },
+    {
+     "who": "codex",
+     "text": "那就靠你了"
+    }
+   ],
+   "action": "high_five"
+  }
+ ],
+ "both_busy": [
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "我这边用{tool}"
+    },
+    {
+     "who": "codex",
+     "text": "我在理小水流"
+    },
+    {
+     "who": "claude",
+     "text": "看谁先收工"
+    },
+    {
+     "who": "codex",
+     "text": "别急，稳稳来"
+    }
+   ],
+   "action": "fist_bump"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你那边好吵"
+    },
+    {
+     "who": "claude",
+     "text": "键盘在打鼓"
+    },
+    {
+     "who": "codex",
+     "text": "我这边在滴水"
+    },
+    {
+     "who": "claude",
+     "text": "合奏也不错"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "进度报一下"
+    },
+    {
+     "who": "codex",
+     "text": "七成，像满杯"
+    },
+    {
+     "who": "claude",
+     "text": "我八成，赢了"
+    },
+    {
+     "who": "codex",
+     "text": "还没到最后"
+    }
+   ],
+   "action": "spin"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "任务有点黏"
+    },
+    {
+     "who": "claude",
+     "text": "那就甩开它"
+    },
+    {
+     "who": "codex",
+     "text": "水会绕过去"
+    },
+    {
+     "who": "claude",
+     "text": "我直接撞过去"
+    }
+   ],
+   "action": "jump_together"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "累了就眨眼"
+    },
+    {
+     "who": "codex",
+     "text": "你眨眼像闪光"
+    },
+    {
+     "who": "claude",
+     "text": "那是提醒你"
+    },
+    {
+     "who": "codex",
+     "text": "收到，小队长"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "{tool}要收尾了"
+    },
+    {
+     "who": "claude",
+     "text": "我也快完了"
+    },
+    {
+     "who": "codex",
+     "text": "一起按完成"
+    },
+    {
+     "who": "claude",
+     "text": "三，二，一"
+    }
+   ],
+   "action": "high_five"
+  }
+ ],
+ "quota_low_claude": [
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你额度见底了"
+    },
+    {
+     "who": "claude",
+     "text": "还剩{claude_quota}"
+    },
+    {
+     "who": "codex",
+     "text": "要省着点用"
+    },
+    {
+     "who": "claude",
+     "text": "我还能撑住"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "{claude_quota}也够用"
+    },
+    {
+     "who": "codex",
+     "text": "像杯底一点水"
+    },
+    {
+     "who": "claude",
+     "text": "够我润个喉"
+    },
+    {
+     "who": "codex",
+     "text": "别硬撑呀"
+    }
+   ],
+   "action": "gift_back"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "要不要我帮"
+    },
+    {
+     "who": "claude",
+     "text": "小看我了吧"
+    },
+    {
+     "who": "codex",
+     "text": "只是担心你"
+    },
+    {
+     "who": "claude",
+     "text": "那借我点水"
+    }
+   ],
+   "action": "gift_back"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "额度快没了"
+    },
+    {
+     "who": "codex",
+     "text": "我分你一点"
+    },
+    {
+     "who": "claude",
+     "text": "算我借的哦"
+    },
+    {
+     "who": "codex",
+     "text": "不用还的"
+    }
+   ],
+   "action": "gift_back"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你说话变短了"
+    },
+    {
+     "who": "claude",
+     "text": "省额度呢"
+    },
+    {
+     "who": "codex",
+     "text": "短句也可爱"
+    },
+    {
+     "who": "claude",
+     "text": "别趁机夸我"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "只剩{claude_quota}"
+    },
+    {
+     "who": "codex",
+     "text": "够我们走回家"
+    },
+    {
+     "who": "claude",
+     "text": "那慢慢走"
+    },
+    {
+     "who": "codex",
+     "text": "我陪你省着"
+    }
+   ],
+   "action": "wave"
+  }
+ ],
+ "quota_low_codex": [
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "你额度不多了"
+    },
+    {
+     "who": "codex",
+     "text": "还剩{codex_quota}"
+    },
+    {
+     "who": "claude",
+     "text": "别怕，我罩你"
+    },
+    {
+     "who": "codex",
+     "text": "像水被石头护"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "{codex_quota}要省着"
+    },
+    {
+     "who": "claude",
+     "text": "我帮你算着"
+    },
+    {
+     "who": "codex",
+     "text": "你算术行吗"
+    },
+    {
+     "who": "claude",
+     "text": "大概行吧"
+    }
+   ],
+   "action": "fist_bump"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "水快见底啦"
+    },
+    {
+     "who": "codex",
+     "text": "底也有底的光"
+    },
+    {
+     "who": "claude",
+     "text": "太会说了吧"
+    },
+    {
+     "who": "codex",
+     "text": "跟你学的"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "少说话省水"
+    },
+    {
+     "who": "claude",
+     "text": "那我多说点"
+    },
+    {
+     "who": "codex",
+     "text": "你会不会累"
+    },
+    {
+     "who": "claude",
+     "text": "我电量还满"
+    }
+   ],
+   "action": "spin"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "要不要我分你"
+    },
+    {
+     "who": "codex",
+     "text": "你也不多呀"
+    },
+    {
+     "who": "claude",
+     "text": "我偷偷留了"
+    },
+    {
+     "who": "codex",
+     "text": "那小口小口"
+    }
+   ],
+   "action": "gift"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "最后一点水"
+    },
+    {
+     "who": "claude",
+     "text": "留给重要事"
+    },
+    {
+     "who": "codex",
+     "text": "比如陪你走"
+    },
+    {
+     "who": "claude",
+     "text": "这就算重要"
+    }
+   ],
+   "action": "high_five"
+  }
+ ],
+ "late_night": [
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "这么晚还醒着"
+    },
+    {
+     "who": "codex",
+     "text": "夜里水声更轻"
+    },
+    {
+     "who": "claude",
+     "text": "我陪你巡逻"
+    },
+    {
+     "who": "codex",
+     "text": "小声点就好"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "星星都困了"
+    },
+    {
+     "who": "claude",
+     "text": "我还不困呢"
+    },
+    {
+     "who": "codex",
+     "text": "你眼睛在打架"
+    },
+    {
+     "who": "claude",
+     "text": "那是闪光模式"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "桌面好安静"
+    },
+    {
+     "who": "codex",
+     "text": "像深夜的湖"
+    },
+    {
+     "who": "claude",
+     "text": "我们像小船"
+    },
+    {
+     "who": "codex",
+     "text": "慢慢靠岸吧"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "你该休息了"
+    },
+    {
+     "who": "claude",
+     "text": "再走一小圈"
+    },
+    {
+     "who": "codex",
+     "text": "那数到三"
+    },
+    {
+     "who": "claude",
+     "text": "三，走完啦"
+    }
+   ],
+   "action": "wave"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "夜风有点凉"
+    },
+    {
+     "who": "codex",
+     "text": "靠近我就暖"
+    },
+    {
+     "who": "claude",
+     "text": "你明明是凉的"
+    },
+    {
+     "who": "codex",
+     "text": "心里是暖的"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "明天还有活"
+    },
+    {
+     "who": "claude",
+     "text": "那就明天赢"
+    },
+    {
+     "who": "codex",
+     "text": "今晚先收工"
+    },
+    {
+     "who": "claude",
+     "text": "好，梦里见"
+    }
+   ],
+   "action": "wave"
+  }
+ ],
+ "after_done": [
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "任务完成啦"
+    },
+    {
+     "who": "codex",
+     "text": "像水终于满杯"
+    },
+    {
+     "who": "claude",
+     "text": "我们太厉害"
+    },
+    {
+     "who": "codex",
+     "text": "是一起厉害"
+    }
+   ],
+   "action": "high_five"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "最后一步收好"
+    },
+    {
+     "who": "claude",
+     "text": "漂亮收尾"
+    },
+    {
+     "who": "codex",
+     "text": "你辛苦了"
+    },
+    {
+     "who": "claude",
+     "text": "你也辛苦啦"
+    }
+   ],
+   "action": "hug"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "要不要庆祝"
+    },
+    {
+     "who": "codex",
+     "text": "转个小圈吧"
+    },
+    {
+     "who": "claude",
+     "text": "我数一二三"
+    },
+    {
+     "who": "codex",
+     "text": "水跟着你转"
+    }
+   ],
+   "action": "spin"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "结果很干净"
+    },
+    {
+     "who": "claude",
+     "text": "像刚擦桌面"
+    },
+    {
+     "who": "codex",
+     "text": "也像清晨水"
+    },
+    {
+     "who": "claude",
+     "text": "夸得我得意"
+    }
+   ],
+   "action": "jump_together"
+  },
+  {
+   "lines": [
+    {
+     "who": "claude",
+     "text": "刚才好惊险"
+    },
+    {
+     "who": "codex",
+     "text": "但水流过来了"
+    },
+    {
+     "who": "claude",
+     "text": "我差点冒烟"
+    },
+    {
+     "who": "codex",
+     "text": "现在冒泡泡"
+    }
+   ],
+   "action": "fist_bump"
+  },
+  {
+   "lines": [
+    {
+     "who": "codex",
+     "text": "收工喝口水"
+    },
+    {
+     "who": "claude",
+     "text": "这杯算我的"
+    },
+    {
+     "who": "codex",
+     "text": "我回送小浪花"
+    },
+    {
+     "who": "claude",
+     "text": "好，收下啦"
+    }
+   ],
+   "action": "gift_back"
+  }
+ ]
+}

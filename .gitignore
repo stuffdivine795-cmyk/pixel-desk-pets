@@ -1,0 +1,6 @@
+.build/
+*.app/
+*.log
+.DS_Store
+node_modules/
+codex-pet/sketch.html

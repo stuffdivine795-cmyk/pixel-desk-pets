@@ -1,0 +1,480 @@
+{
+ "celebrate": [
+  [
+   {
+    "who": "claude",
+    "text": "任务完成啦！"
+   },
+   {
+    "who": "codex",
+    "text": "跑来碰碰手"
+   },
+   {
+    "who": "claude",
+    "text": "啪，成功！"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "你做得真棒"
+   },
+   {
+    "who": "claude",
+    "text": "一起转个圈"
+   },
+   {
+    "who": "codex",
+    "text": "水花也开心"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "看我的尾灯！"
+   },
+   {
+    "who": "codex",
+    "text": "伸手来对接"
+   },
+   {
+    "who": "claude",
+    "text": "接住小水花"
+   }
+  ]
+ ],
+ "comfort": [
+  [
+   {
+    "who": "claude",
+    "text": "我不开心"
+   },
+   {
+    "who": "codex",
+    "text": "拍拍你后背"
+   },
+   {
+    "who": "claude",
+    "text": "谢谢小水滴"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "又报错了"
+   },
+   {
+    "who": "claude",
+    "text": "给你小饼干"
+   },
+   {
+    "who": "codex",
+    "text": "心里暖了"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "又失败了"
+   },
+   {
+    "who": "codex",
+    "text": "别急，慢慢来"
+   },
+   {
+    "who": "claude",
+    "text": "靠你一会儿"
+   }
+  ]
+ ],
+ "cheer": [
+  [
+   {
+    "who": "codex",
+    "text": "慢慢写代码"
+   },
+   {
+    "who": "claude",
+    "text": "举牌来加油"
+   },
+   {
+    "who": "codex",
+    "text": "看到就有劲"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "我在赶任务"
+   },
+   {
+    "who": "codex",
+    "text": "坐旁边陪你"
+   },
+   {
+    "who": "claude",
+    "text": "牌子再高点"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "眼睛累不累？"
+   },
+   {
+    "who": "claude",
+    "text": "加油牌摇摇"
+   },
+   {
+    "who": "codex",
+    "text": "喝口水继续"
+   }
+  ]
+ ],
+ "give_battery": [
+  [
+   {
+    "who": "claude",
+    "text": "电量亮红啦"
+   },
+   {
+    "who": "codex",
+    "text": "给你小电池"
+   },
+   {
+    "who": "claude",
+    "text": "又能撑一会"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "只剩一格电"
+   },
+   {
+    "who": "claude",
+    "text": "电池递给你"
+   },
+   {
+    "who": "codex",
+    "text": "水滴也充电"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "额度快见底"
+   },
+   {
+    "who": "codex",
+    "text": "换上新电池"
+   },
+   {
+    "who": "claude",
+    "text": "满格小怪兽"
+   }
+  ]
+ ],
+ "fireworks": [
+  [
+   {
+    "who": "codex",
+    "text": "额度重置啦"
+   },
+   {
+    "who": "claude",
+    "text": "快看小烟花"
+   },
+   {
+    "who": "codex",
+    "text": "砰，满天亮"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "点一根引线"
+   },
+   {
+    "who": "codex",
+    "text": "水花变烟火"
+   },
+   {
+    "who": "claude",
+    "text": "一起许个愿"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "夜空蓝亮亮"
+   },
+   {
+    "who": "claude",
+    "text": "橘色火花飞"
+   },
+   {
+    "who": "codex",
+    "text": "明天也顺利"
+   }
+  ]
+ ],
+ "soccer": [
+  [
+   {
+    "who": "claude",
+    "text": "看球，接住！"
+   },
+   {
+    "who": "codex",
+    "text": "轻轻踢回来"
+   },
+   {
+    "who": "claude",
+    "text": "好球，再来！"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "小球滚过去"
+   },
+   {
+    "who": "claude",
+    "text": "抬脚挡一下"
+   },
+   {
+    "who": "codex",
+    "text": "弹到屏幕边"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "这次踢高点"
+   },
+   {
+    "who": "codex",
+    "text": "小心别出界"
+   },
+   {
+    "who": "claude",
+    "text": "我接得稳稳"
+   }
+  ]
+ ],
+ "rps": [
+  [
+   {
+    "who": "codex",
+    "text": "石头剪刀布"
+   },
+   {
+    "who": "claude",
+    "text": "我出小石头"
+   },
+   {
+    "who": "codex",
+    "text": "布包住石头"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "轮到我出布"
+   },
+   {
+    "who": "codex",
+    "text": "剪刀咔嚓剪"
+   },
+   {
+    "who": "claude",
+    "text": "做鬼脸认输"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "再来一回合"
+   },
+   {
+    "who": "claude",
+    "text": "这次出剪刀"
+   },
+   {
+    "who": "codex",
+    "text": "石头赢剪刀"
+   }
+  ]
+ ],
+ "hide_seek": [
+  [
+   {
+    "who": "claude",
+    "text": "我躲屏幕边"
+   },
+   {
+    "who": "codex",
+    "text": "数到三找你"
+   },
+   {
+    "who": "claude",
+    "text": "小声别出声"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "藏进小角落"
+   },
+   {
+    "who": "claude",
+    "text": "我来找水滴"
+   },
+   {
+    "who": "codex",
+    "text": "屏住小呼吸"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "露尾巴啦你"
+   },
+   {
+    "who": "codex",
+    "text": "被橘色发现"
+   },
+   {
+    "who": "claude",
+    "text": "抓住小水滴"
+   }
+  ]
+ ],
+ "nap": [
+  [
+   {
+    "who": "claude",
+    "text": "好久没人来"
+   },
+   {
+    "who": "codex",
+    "text": "贴着你打盹"
+   },
+   {
+    "who": "claude",
+    "text": "呼，慢慢睡"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "屏幕静悄悄"
+   },
+   {
+    "who": "claude",
+    "text": "尾巴当枕头"
+   },
+   {
+    "who": "codex",
+    "text": "借你靠一会"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "困得睁不开"
+   },
+   {
+    "who": "codex",
+    "text": "像小水波静"
+   },
+   {
+    "who": "claude",
+    "text": "一起做个梦"
+   }
+  ]
+ ],
+ "eat": {
+  "claude": [
+   "小鱼干来啦",
+   "咔嚓真香呀",
+   "藏最后一口"
+  ],
+  "codex": [
+   "一滴水入口",
+   "凉凉甜丝丝",
+   "慢慢喝干净"
+  ]
+ },
+ "catch": [
+  [
+   {
+    "who": "claude",
+    "text": "哇，飞起来啦"
+   },
+   {
+    "who": "codex",
+    "text": "张开小水滴"
+   },
+   {
+    "who": "claude",
+    "text": "稳稳接住你"
+   }
+  ],
+  [
+   {
+    "who": "codex",
+    "text": "我被扔过来"
+   },
+   {
+    "who": "claude",
+    "text": "伸出小短手"
+   },
+   {
+    "who": "codex",
+    "text": "撞得晃一晃"
+   }
+  ],
+  [
+   {
+    "who": "claude",
+    "text": "换你扔我啦"
+   },
+   {
+    "who": "codex",
+    "text": "接住小橘团"
+   },
+   {
+    "who": "claude",
+    "text": "安全落地啦"
+   }
+  ]
+ ],
+ "clock": {
+  "morning": {
+   "claude": [
+    "主人早上好",
+    "伸个大懒腰",
+    "今天也加油"
+   ],
+   "codex": [
+    "早安小主人",
+    "水滴洗把脸",
+    "慢慢醒过来"
+   ]
+  },
+  "late": {
+   "claude": [
+    "主人该睡啦",
+    "眼睛要休息",
+    "明天再继续"
+   ],
+   "codex": [
+    "夜深了主人",
+    "放下小任务",
+    "梦里轻轻游"
+   ]
+  }
+ }
+}
