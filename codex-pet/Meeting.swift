@@ -243,13 +243,16 @@ final class MeetingCoordinator {
     var suppressesBubbles: Bool { active != nil || returnX != nil }
     var controlsMotion: Bool { active != nil || seek != nil || departUntil > epochNow() || returnX != nil }
     var epochNow: () -> Double = { Date().timeIntervalSince1970 }
-    var ownURL: URL { directory.appendingPathComponent("pos-\(role.rawValue).json") }
-    var peerURL: URL { directory.appendingPathComponent("pos-\(role.other.rawValue).json") }
+    // Files rewritten many times a second live in a ".noindex" folder so Spotlight never re-indexes them.
+    static func liveDirectory(_ directory: URL) -> URL { directory.appendingPathComponent("live.noindex") }
+    var live: URL { Self.liveDirectory(directory) }
+    var ownURL: URL { live.appendingPathComponent("pos-\(role.rawValue).json") }
+    var peerURL: URL { live.appendingPathComponent("pos-\(role.other.rawValue).json") }
     private var peerStamp: FileStamp?
     private var peerCache: MeetingPosition?
-    var planURL: URL { directory.appendingPathComponent("meet.json") }
-    private var rulesURL: URL { directory.appendingPathComponent("play-local-\(role.rawValue).json") }
-    private var historyURL: URL { directory.appendingPathComponent("meet-local-\(role.rawValue).json") }
+    var planURL: URL { live.appendingPathComponent("meet.json") }
+    private var rulesURL: URL { live.appendingPathComponent("play-local-\(role.rawValue).json") }
+    private var historyURL: URL { live.appendingPathComponent("meet-local-\(role.rawValue).json") }
     init(role: MeetingRole = .local,directory: URL) {
         self.role = role;self.directory = directory
         if let h: History = read(historyURL) { history = h }
@@ -262,7 +265,7 @@ final class MeetingCoordinator {
     }
     @discardableResult private func write<T: Encodable>(_ value: T,to url: URL) -> Bool {
         do {
-            try FileManager.default.createDirectory(at: directory,withIntermediateDirectories: true)
+            try FileManager.default.createDirectory(at: url.deletingLastPathComponent(),withIntermediateDirectories: true)
             let data = try JSONEncoder().encode(value)
             try data.write(to: url,options: .atomic);lastError = nil;return true
         } catch { lastError = error.localizedDescription;return false }

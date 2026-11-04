@@ -65,7 +65,7 @@ check(up.resolveCatch(x: 600,peer: peerFresh,reach: 120,sameScreen: true,epoch: 
 let caught = up.resolveCatch(x: 690,peer: peerFresh,reach: 120,sameScreen: true,epoch: 1000,now: 200,roll: 0.5)
 check(caught?.caught == true && caught?.x == 680 && up.throwVX == 0 && up.active(200) == .caught,"70 % roll: caught, put down beside the peer")
 check(up.resolveCatch(x: 690,peer: peerFresh,reach: 120,sameScreen: true,epoch: 1000,now: 200,roll: 0.5) == nil,"decided only once per throw")
-let catchFile = try JSONSerialization.jsonObject(with: Data(contentsOf: userRoot.appendingPathComponent("catch.json"))) as! [String: Any]
+let catchFile = try JSONSerialization.jsonObject(with: Data(contentsOf: up.catchURL)) as! [String: Any]
 check(catchFile["caught"] as? Bool == true && catchFile["thrower"] as? String == MeetingRole.local.rawValue && !((catchFile["lines"] as? [Any]) ?? []).isEmpty,"catch.json tells the peer what happened")
 up.beginThrow(1500)
 let bumped = up.resolveCatch(x: 690,peer: peerFresh,reach: 120,sameScreen: true,epoch: 1000,now: 300,roll: 0.9)

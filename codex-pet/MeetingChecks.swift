@@ -180,7 +180,8 @@ meetingFollower.shutdown();meetingLeader.shutdown()
 let isolated = meetingTestRoot.appendingPathComponent("isolated")
 try FileManager.default.createDirectory(at: isolated,withIntermediateDirectories: true)
 var stalePlan = meetingPlan;stalePlan.start = meetingTime-11
-try JSONEncoder().encode(stalePlan).write(to: isolated.appendingPathComponent("meet.json"))
+try FileManager.default.createDirectory(at: MeetingCoordinator.liveDirectory(isolated),withIntermediateDirectories: true)
+try JSONEncoder().encode(stalePlan).write(to: MeetingCoordinator.liveDirectory(isolated).appendingPathComponent("meet.json"))
 let isolatedModel = meetingModel(600),isolatedFollower = MeetingCoordinator(role: .codex,directory: isolated)
 isolatedFollower.epochNow = { meetingTime };isolatedModel.meeting = isolatedFollower
 isolatedModel.step(dt: 0.125,now: 1000)

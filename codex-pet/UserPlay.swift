@@ -35,6 +35,7 @@ final class UserPlay {
     private let linesURL: URL
     private var linesStamp: Date?
     private let directory: URL
+    var catchURL: URL { MeetingCoordinator.liveDirectory(directory).appendingPathComponent("catch.json") }
     private let defaults: UserDefaults
 
     // Cursor
@@ -178,7 +179,8 @@ final class UserPlay {
         let plan: [String: Any] = ["id": id, "thrower": role.rawValue, "caught": caught, "at": epoch,
                                    "lines": script.map { ["who": $0.who.rawValue, "text": $0.text] }]
         if let data = try? JSONSerialization.data(withJSONObject: plan) {
-            try? data.write(to: directory.appendingPathComponent("catch.json"), options: .atomic)
+            try? FileManager.default.createDirectory(at: catchURL.deletingLastPathComponent(),withIntermediateDirectories: true)
+            try? data.write(to: catchURL, options: .atomic)
         }
         lastCatchID = id
         if caught {
@@ -197,7 +199,7 @@ final class UserPlay {
 
     // The other pet reads the thrower's decision and reacts.
     func pollCatch(epoch: Double, now: Double) {
-        guard let data = try? Data(contentsOf: directory.appendingPathComponent("catch.json")),
+        guard let data = try? Data(contentsOf: catchURL),
               let plan = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
               let id = plan["id"] as? String, id != lastCatchID,
               plan["thrower"] as? String == role.other.rawValue,
