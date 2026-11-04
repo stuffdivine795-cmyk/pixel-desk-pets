@@ -245,6 +245,8 @@ final class MeetingCoordinator {
     var epochNow: () -> Double = { Date().timeIntervalSince1970 }
     var ownURL: URL { directory.appendingPathComponent("pos-\(role.rawValue).json") }
     var peerURL: URL { directory.appendingPathComponent("pos-\(role.other.rawValue).json") }
+    private var peerStamp: FileStamp?
+    private var peerCache: MeetingPosition?
     var planURL: URL { directory.appendingPathComponent("meet.json") }
     private var rulesURL: URL { directory.appendingPathComponent("play-local-\(role.rawValue).json") }
     private var historyURL: URL { directory.appendingPathComponent("meet-local-\(role.rawValue).json") }
@@ -349,7 +351,10 @@ final class MeetingCoordinator {
         }
         // Row separation needs the latest moving peer, rather than a half-second-old
         // location. Keep the more expensive meeting/script negotiation on its timer.
-        peer = read(peerURL)
+        // Decode only when the file changed; most ticks the peer has not written anything new.
+        let stamp = FileStamp.read(peerURL)
+        if stamp == nil || stamp != peerStamp { peerStamp = stamp;peerCache = stamp == nil ? nil : read(peerURL) }
+        peer = peerCache
         if let p = peer,!p.fresh(now) { peer = nil }
         if now >= nextPoll {
             nextPoll = now+0.5
@@ -592,7 +597,16 @@ extension PetModel {
         return .init(feetX: grid.snap(position.x),width: QuotaBattery.width(five.remaining(at: now),grid: grid),
                      minX: origin.x,maxX: origin.x+size.canvas.width,unit: grid.unit)
     }
+    // Extents depend only on mood, outfit and size; they are published every tick while walking.
+    private static var extentCache: [String: (back: CGFloat,front: CGFloat,top: CGFloat)] = [:]
     var meetingExtents: (back: CGFloat,front: CGFloat,top: CGFloat) {
+        let key = "\(state.rawValue)|\(outfit)|\(size.cell)|\(size.uiCell)"
+        if let cached = Self.extentCache[key] { return cached }
+        let extents = computeMeetingExtents
+        Self.extentCache[key] = extents
+        return extents
+    }
+    private var computeMeetingExtents: (back: CGFloat,front: CGFloat,top: CGFloat) {
         let anchor = CGPoint(x: 240,y: 80)
         #if DESK_PET
         let base = PixelSprite.primitives(mood: state,act: Act(name: "会面"),outfit: outfit,

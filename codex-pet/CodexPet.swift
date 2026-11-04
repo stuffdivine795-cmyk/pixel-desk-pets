@@ -2338,7 +2338,12 @@ final class PetView: NSView {
         needsDisplay = true
     }
 
-    override func draw(_ dirtyRect: NSRect) { draw(dirtyRect,now: Date()) }
+    // Set by the controller: the live window shows its pre-rendered frame instead of drawing again.
+    weak var frameGate: FrameGate?
+    override func draw(_ dirtyRect: NSRect) {
+        if frameGate?.present(in: dirtyRect,bounds: bounds) == true { return }
+        draw(dirtyRect, now: Date())
+    }
 
     func draw(_ dirtyRect: NSRect,now: Date) {
         NSColor.clear.setFill()
@@ -2400,6 +2405,7 @@ final class PetController: NSObject, NSApplicationDelegate {
     var model: PetModel!
     var screen: NSScreen?
     var timer: Timer?
+    let frameGate = FrameGate()
     var reader: StateReader!
     var lastTick: TimeInterval = 0
     var nextPoll: TimeInterval = 0
@@ -2512,11 +2518,14 @@ final class PetController: NSObject, NSApplicationDelegate {
         let local = window.convertPoint(fromScreen: NSEvent.mouseLocation)
         let interactive = petView.holdingMouse || petView.containsCharacter(local)
         if window.ignoresMouseEvents == interactive { window.ignoresMouseEvents = !interactive }
-        petView.needsDisplay = true
+        petView.frameGate = frameGate
+        if let dirty = frameGate.changed(size: petView.bounds.size,scale: window.backingScaleFactor,draw: { petView.draw(petView.bounds,now: Date()) }) {
+            petView.setNeedsDisplay(dirty)
+        }
         let interval = FrameRate.interval(holding: petView.holdingMouse || model.dragging,
                                           airborne: !model.grounded || model.trick != nil || model.landing != nil || model.user.throwVX != 0,
                                           interacting: model.meeting?.active != nil || model.user.active(now) != nil,
-                                          walking: model.walking || model.meeting?.isWalking == true,
+                                          walking: model.meeting?.isWalking == true,strolling: model.walking,
                                           hovered: interactive,sleeping: model.state == .sleeping)
         if let t = timer, abs(t.timeInterval - interval) > 0.001 { schedule(interval) }
     }

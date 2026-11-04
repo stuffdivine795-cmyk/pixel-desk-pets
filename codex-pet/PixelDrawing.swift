@@ -69,10 +69,15 @@ indirect enum PixelNode {
 }
 
 enum PixelColor {
+    // Colors are created once per hex; drawing asks for the same few dozen every frame.
+    private static var cache: [String: CGColor] = [:]
     static func color(_ hex: String) -> CGColor {
+        if let cached = cache[hex] { return cached }
         let rgb = UInt32(hex, radix: 16)!
-        return CGColor(srgbRed: CGFloat((rgb>>16)&255)/255, green: CGFloat((rgb>>8)&255)/255,
-                       blue: CGFloat(rgb&255)/255, alpha: 1)
+        let color = CGColor(srgbRed: CGFloat((rgb>>16)&255)/255, green: CGFloat((rgb>>8)&255)/255,
+                            blue: CGFloat(rgb&255)/255, alpha: 1)
+        cache[hex] = color
+        return color
     }
 }
 
@@ -171,8 +176,9 @@ enum QuotaBattery {
     }
     static func resetText(_ five: QuotaWindow, at now: Date) -> String {
         guard let reset = five.resetsAt, reset > now else { return "--:--" }
-        let f = DateFormatter(); f.dateFormat = "HH:mm";return f.string(from: reset)
+        return resetFormatter.string(from: reset)
     }
+    private static let resetFormatter: DateFormatter = { let f = DateFormatter(); f.dateFormat = "HH:mm"; return f }()
     static func segments(_ left: Int) -> Int { max(left > 0 ? 1 : 0, Int((CGFloat(left) / 100 * 4).rounded())) }
     static let glyphs: [Character: String] = [
         "0":"111101101101111", "1":"010110010010111", "2":"111001111100111", "3":"111001111001111",
@@ -233,18 +239,45 @@ enum PixelBubble {
         p.lineBreakMode = detail ? .byTruncatingMiddle : .byCharWrapping
         return p
     }
+    // Text measuring is the slowest part of a frame; the same line is measured every tick while it shows.
+    private static var fonts: [String: NSFont] = [:]
+    static func font(_ size: CGFloat,_ weight: NSFont.Weight) -> NSFont {
+        let key = "\(size)|\(weight.rawValue)"
+        if let cached = fonts[key] { return cached }
+        let font = NSFont.systemFont(ofSize: size,weight: weight)
+        fonts[key] = font
+        return font
+    }
+    private static var measured: [String: CGRect] = [:]
+    private static var detailWidths: [String: CGFloat] = [:]
+    static func measure(_ text: String,unit u: CGFloat) -> CGRect {
+        let key = "\(u)|\(text)"
+        if let cached = measured[key] { return cached }
+        let attributes: [NSAttributedString.Key: Any] = [.font: font(4*u,.medium),
+                                                         .paragraphStyle: paragraph()]
+        let rect = (text as NSString).boundingRect(with: NSSize(width: 66*u,height: 36*u),
+            options: [.usesLineFragmentOrigin,.usesFontLeading],attributes: attributes)
+        if measured.count > 200 { measured.removeAll() }
+        measured[key] = rect
+        return rect
+    }
+    static func measureDetail(_ detail: String,font: CGFloat) -> CGFloat {
+        let key = "\(font)|\(detail)"
+        if let cached = detailWidths[key] { return cached }
+        let width = (detail as NSString).size(withAttributes: [.font: Self.font(font,.regular)]).width
+        if detailWidths.count > 200 { detailWidths.removeAll() }
+        detailWidths[key] = width
+        return width
+    }
     static func layout(text: String, detail: String, thinking: Bool, working: Bool, sprite: CGRect,
                        anchor: CGPoint, bounds: CGRect, worldY: CGFloat, screenTop: CGFloat,
                        reserveTop: CGFloat, grid: PixelGrid, ink: String, time: Double) -> Layout {
         let u = grid.unit, mainFont = 4*u, detailFont = 3*u
         func ceilUnit(_ x: CGFloat) -> CGFloat { ceil(x/u)*u }
-        let attributes: [NSAttributedString.Key: Any] = [.font: NSFont.systemFont(ofSize: mainFont,weight: .medium),
-                                                         .paragraphStyle: paragraph()]
-        let measured = (text as NSString).boundingRect(with: NSSize(width: 66*u,height: 36*u),
-            options: [.usesLineFragmentOrigin,.usesFontLeading],attributes: attributes)
+        let measured = measure(text,unit: u)
         let textHeight = text.isEmpty ? 0 : min(36*u,ceilUnit(measured.height))
         let extra: CGFloat = thinking ? 4*u : working ? 5*u : 0
-        let detailWidth = (detail as NSString).size(withAttributes: [.font: NSFont.systemFont(ofSize: detailFont)]).width
+        let detailWidth = measureDetail(detail,font: detailFont)
         let width = min(72*u,max(20*u,ceilUnit(measured.width)+6*u,working ? ceilUnit(detailWidth)+6*u : 0))
         let height = max(10*u,textHeight+extra+6*u)
         let top = grid.snap(max(sprite.maxY,anchor.y+reserveTop))
@@ -295,11 +328,11 @@ enum PixelBubble {
         for fill in layout.fills { fill.draw(in: context) }
         if !text.isEmpty {
             (text as NSString).draw(with: layout.textRect,options: [.usesLineFragmentOrigin,.usesFontLeading],
-                attributes: [.font: NSFont.systemFont(ofSize: layout.mainFont,weight: .medium),
+                attributes: [.font: font(layout.mainFont,.medium),
                              .foregroundColor: NSColor(cgColor: PixelColor.color(ink))!, .paragraphStyle: paragraph()])
         }
         if working {
-            (detail as NSString).draw(in: layout.detailRect,withAttributes: [.font: NSFont.systemFont(ofSize: layout.detailFont,weight: .medium),
+            (detail as NSString).draw(in: layout.detailRect,withAttributes: [.font: font(layout.detailFont,.medium),
                 .foregroundColor: NSColor(cgColor: PixelColor.color("777777"))!, .paragraphStyle: paragraph(true)])
         }
         context.restoreGState(); NSGraphicsContext.restoreGraphicsState()
@@ -309,10 +342,74 @@ enum PixelBubble {
 // How often a pet wakes up and redraws. Pixel art moves in whole steps, so only
 // a held or falling pet needs 60 fps; idling at a low rate keeps the Mac cool.
 enum FrameRate {
-    static func interval(holding: Bool,airborne: Bool,interacting: Bool,walking: Bool,hovered: Bool,sleeping: Bool) -> TimeInterval {
+    // Strolling moves in 0.125 s steps, so two ticks per step are enough.
+    static func interval(holding: Bool,airborne: Bool,interacting: Bool,walking: Bool,strolling: Bool = false,hovered: Bool,sleeping: Bool) -> TimeInterval {
         if holding || airborne { return 1.0 / 60 }
         if interacting || walking || hovered { return 1.0 / 20 }
+        if strolling { return 1.0 / 16 }
         if sleeping { return 1.0 / 4 }
         return 1.0 / 10
+    }
+}
+
+// Renders the view offscreen once per tick and reports the region that changed since the last frame.
+// The window then shows `image` for just that region, so nothing is drawn twice or redrawn unchanged.
+final class FrameGate {
+    private var context: CGContext?
+    private var last: [UInt8] = []
+    private(set) var image: CGImage?
+
+    func changed(size: NSSize,scale: CGFloat,draw: () -> Void) -> CGRect? {
+        let w = max(1,Int((size.width*scale).rounded(.up))), h = max(1,Int((size.height*scale).rounded(.up)))
+        if context?.width != w || context?.height != h {
+            context = CGContext(data: nil,width: w,height: h,bitsPerComponent: 8,bytesPerRow: w*4,
+                                space: CGColorSpaceCreateDeviceRGB(),bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+            context?.scaleBy(x: scale,y: scale)
+            last = []
+        }
+        let full = CGRect(origin: .zero,size: size)
+        guard let context = context, let data = context.data else { image = nil; return full }
+        context.clear(full)
+        let previous = NSGraphicsContext.current
+        NSGraphicsContext.current = NSGraphicsContext(cgContext: context,flipped: false)
+        draw()
+        NSGraphicsContext.current = previous
+        let row = context.bytesPerRow, count = row * h
+        let bytes = data.assumingMemoryBound(to: UInt8.self)
+        let dirty: CGRect? = last.count != count ? full : last.withUnsafeBytes { old -> CGRect? in
+            let before = old.baseAddress!.assumingMemoryBound(to: UInt8.self)
+            let rows = (0..<h).filter { memcmp(before+$0*row,bytes+$0*row,row) != 0 }
+            guard let top = rows.first, let bottom = rows.last else { return nil }
+            var minX = w, maxX = -1
+            for y in rows {
+                let a = UnsafeRawPointer(before+y*row).assumingMemoryBound(to: UInt32.self)
+                let b = UnsafeRawPointer(bytes+y*row).assumingMemoryBound(to: UInt32.self)
+                var x = 0
+                while x < min(minX,w) && a[x] == b[x] { x += 1 }
+                minX = min(minX,x)
+                var r = w-1
+                while r > maxX && a[r] == b[r] { r -= 1 }
+                maxX = max(maxX,r)
+            }
+            // Bitmap rows run top-down; the view is not flipped. Pad a point for rounding.
+            return CGRect(x: CGFloat(minX)/scale-1,y: CGFloat(h-bottom-1)/scale-1,
+                          width: CGFloat(maxX-minX+1)/scale+2,height: CGFloat(bottom-top+1)/scale+2)
+        }
+        guard dirty != nil else { return nil }
+        last = Array(UnsafeBufferPointer(start: bytes,count: count))
+        image = context.makeImage()
+        return dirty
+    }
+
+    // Shows the last rendered frame; false when there is none yet and the view must draw itself.
+    func present(in dirtyRect: NSRect,bounds: NSRect) -> Bool {
+        guard let image = image, let context = NSGraphicsContext.current?.cgContext else { return false }
+        context.saveGState()
+        context.clip(to: dirtyRect)
+        context.clear(dirtyRect)
+        context.interpolationQuality = .none
+        context.draw(image,in: bounds)
+        context.restoreGState()
+        return true
     }
 }
