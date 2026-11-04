@@ -255,6 +255,7 @@ final class MeetingCoordinator {
     private var historyURL: URL { live.appendingPathComponent("meet-local-\(role.rawValue).json") }
     init(role: MeetingRole = .local,directory: URL) {
         self.role = role;self.directory = directory
+        try? FileManager.default.createDirectory(at: Self.liveDirectory(directory),withIntermediateDirectories: true)
         if let h: History = read(historyURL) { history = h }
         if let r: InteractionRules = read(rulesURL) { rules = r;rules.lastObservation = nil }
         if let plan: MeetingPlan = read(planURL),plan.valid { history.last = max(history.last,plan.start) }
